@@ -1,16 +1,13 @@
 import React from 'react'
-import {Text, View, StyleSheet, TouchableHighlight} from 'react-native'
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native'
+import {globalStoreSingle} from 'src/store/global'
+import {observer} from 'mobx-react'
+import {navConfig} from 'src/share'
 
 import {
   FontAwesomeIcon,
   Props as FontAwesomeIconProps,
 } from '@fortawesome/react-native-fontawesome'
-import {
-  faFileInvoiceDollar,
-  faEdit,
-  faAddressBook,
-  faHistory,
-} from '@fortawesome/free-solid-svg-icons'
 
 const styles = StyleSheet.create({
   navBar: {
@@ -29,29 +26,28 @@ const styles = StyleSheet.create({
 interface NavBarItemProps {
   icon: FontAwesomeIconProps['icon']
   text: string
-  onPress?: () => void
+  tag: string
 }
-const NavBarItem: React.FC<NavBarItemProps> = props => {
-  const {icon, text, onPress} = props
+const NavBarItem: React.FC<NavBarItemProps> = observer(props => {
+  const {icon, text, tag} = props
   return (
-    <TouchableHighlight style={styles.navBarItem} onPress={onPress}>
-      <FontAwesomeIcon size={20} icon={icon} />
-      <Text style={{fontSize: 16}}>{text}</Text>
-    </TouchableHighlight>
+    <TouchableOpacity
+      style={styles.navBarItem}
+      onPress={() => globalStoreSingle.switchPageTag(tag)}>
+      <View style={styles.navBarItem}>
+        <FontAwesomeIcon size={20} icon={icon} />
+        <Text style={{fontSize: 16}}>{text}</Text>
+      </View>
+    </TouchableOpacity>
   )
-}
+})
 
-type NavTag = 'edit' | 'bookkeeping' | 'contacts' | 'history'
-interface NavBarProps {
-  onSwitch?: (tag: NavTag) => void
-}
-export const NavBar: React.FC<NavBarProps> = props => {
+export const NavBar: React.FC = () => {
   return (
     <View style={styles.navBar}>
-      <NavBarItem icon={faEdit} text="记账" />
-      <NavBarItem icon={faFileInvoiceDollar} text="总账本" />
-      <NavBarItem icon={faAddressBook} text="客户" />
-      <NavBarItem icon={faHistory} text="交易查询" />
+      {navConfig.map(item => {
+        return <NavBarItem tag={item.tag} icon={item.icon} text={item.title} />
+      })}
     </View>
   )
 }
