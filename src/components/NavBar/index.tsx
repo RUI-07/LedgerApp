@@ -46,7 +46,14 @@ export const NavBar: React.FC = () => {
   return (
     <View style={styles.navBar}>
       {navConfig.map(item => {
-        return <NavBarItem tag={item.tag} icon={item.icon} text={item.title} />
+        return (
+          <NavBarItem
+            key={item.tag}
+            tag={item.tag}
+            icon={item.icon}
+            text={item.title}
+          />
+        )
       })}
     </View>
   )
