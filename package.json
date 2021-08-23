@@ -14,6 +14,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-native-fontawesome": "^0.2.7",
     "@react-native-community/datetimepicker": "^3.5.2",
+    "bson": "4.4.0",
     "dayjs": "^1.10.6",
     "mobx": "^6.3.2",
     "mobx-react": "^7.2.0",
@@ -23,7 +24,8 @@
     "react-native-modal-datetime-picker": "^10.2.0",
     "react-native-safe-area-context": "^3.3.0",
     "react-native-svg": "^12.1.1",
-    "react-native-vector-icons": "^8.1.0"
+    "react-native-vector-icons": "^8.1.0",
+    "realm": "^10.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
