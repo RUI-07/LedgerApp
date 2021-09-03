@@ -3258,6 +3258,11 @@ extsprintf@^1.2.0:
   resolved "http://npm-registry.duowan.com/extsprintf/download/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
 
+fast-base64-decode@^1.0.0:
+  version "1.0.0"
+  resolved "http://npm-registry.duowan.com/fast-base64-decode/download/fast-base64-decode-1.0.0.tgz#b434a0dd7d92b12b43f26819300d2dafb83ee418"
+  integrity sha1-tDSg3X2SsStD8mgZMA0tr7g+5Bg=
+
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
   resolved "http://npm-registry.duowan.com/fast-deep-equal/download/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
@@ -6235,6 +6240,13 @@ react-native-elements@^3.4.2:
     opencollective-postinstall "^2.0.3"
     react-native-ratings "8.0.4"
     react-native-size-matters "^0.3.1"
+
+react-native-get-random-values@^1.7.0:
+  version "1.7.0"
+  resolved "http://npm-registry.duowan.com/react-native-get-random-values/download/react-native-get-random-values-1.7.0.tgz#86d9d1960828b606392dba4540bf760605448530"
+  integrity sha1-htnRlggotgY5LbpFQL92BgVEhTA=
+  dependencies:
+    fast-base64-decode "^1.0.0"
 
 react-native-modal-datetime-picker@^10.2.0:
   version "10.2.0"

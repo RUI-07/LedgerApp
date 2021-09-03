@@ -1,19 +1,19 @@
 import {ObjectSchema} from 'realm'
 
-export const Contacts: ObjectSchema = {
+export const ContactsSchema: ObjectSchema = {
   name: 'Contacts',
   properties: {
-    _id: 'int',
+    _id: 'objectId',
     name: 'string',
     firstDate: 'date',
   },
   primaryKey: '_id',
 }
 
-export const Goods: ObjectSchema = {
+export const GoodsSchema: ObjectSchema = {
   name: 'Goods',
   properties: {
-    _id: 'int',
+    _id: 'objectId',
     name: 'string',
     unitPrice: 'date',
     unit: 'string',
