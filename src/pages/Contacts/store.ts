@@ -1,25 +1,21 @@
 import Realm, {BSON} from 'realm'
-import {ContactsSchema} from 'src/schema'
 import {DePromise} from 'src/util/DePromise'
 import {Contacts} from 'src/types'
 import {makeAutoObservable} from 'mobx'
+import {RealmHandle} from 'src/components/RealmProvider'
 
 export class ContactsStore {
-  private realm: DePromise<ReturnType<typeof Realm.open>> | undefined
-  private realmContacts: Realm.Results<Contacts> | undefined
+  realm: DePromise<ReturnType<typeof Realm.open>> | undefined
+  realmContacts: Realm.Results<Contacts> | undefined
   contacts: Contacts[] = []
 
   constructor() {
     makeAutoObservable(this)
   }
 
-  async init() {
-    Realm.deleteFile({})
-    this.realm = await Realm.open({
-      schema: [ContactsSchema],
-    })
-    this.realmContacts = this.realm.objects('Contacts')
-    return () => this.realm?.close()
+  async init(realm: RealmHandle) {
+    this.realm = realm
+    this.realmContacts = this.realm?.objects('Contacts')
   }
 
   create() {
@@ -42,5 +38,6 @@ export class ContactsStore {
         firstDate: item.firstDate,
         _id: item._id,
       })) || []
+    console.log('fetch', this.contacts)
   }
 }
