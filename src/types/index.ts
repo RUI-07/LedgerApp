@@ -1,11 +1,13 @@
+import {ObjectID} from 'bson'
+
 export interface Contacts {
-  _id: number
+  _id: ObjectID
   name: string
   firstDate: Date
 }
 
 export interface Goods {
-  _id: number
+  _id: ObjectID
   name: string
   unitPrice: Date
   unit: string

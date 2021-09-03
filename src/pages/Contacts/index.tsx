@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
-import {View, Text} from 'react-native'
+import {View, Text, ScrollView} from 'react-native'
+import {toJS} from 'mobx'
 import {observer, useLocalObservable} from 'mobx-react'
 import {ContactsStore} from './store'
 import {Button} from 'react-native-elements'
@@ -10,6 +11,7 @@ const Contacts = observer(() => {
 
   useEffect(() => {
     const disposalPromise = store.init()
+    store.fetch()
     return () => {
       disposalPromise.then(func => func())
     }
@@ -17,10 +19,16 @@ const Contacts = observer(() => {
 
   return (
     <View>
-      <Button title="添加客户" onPress={() => store.createContacts()} />
-      {store.contacts.map(item => (
-        <ContactsListItem id={item._id + ''} name={item.name} />
-      ))}
+      <Button title="添加客户" onPress={() => store.create()} />
+      <ScrollView>
+        {store.contacts.map(item => (
+          <ContactsListItem
+            key={item._id.toHexString()}
+            id={item._id + ''}
+            name={item.name}
+          />
+        ))}
+      </ScrollView>
     </View>
   )
 })
