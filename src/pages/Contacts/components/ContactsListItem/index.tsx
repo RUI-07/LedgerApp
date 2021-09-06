@@ -1,34 +1,45 @@
 import React from 'react'
 import {View, Text} from 'react-native'
 import {ListItem, Avatar, Button} from 'react-native-elements'
+import {Space} from 'src/components/Space'
+import {Contacts} from 'src/types'
 
 interface ContactsListItemProps {
-  id: string
-  name: string
-  avatar?: string
-  onEdit?: (id: string) => void
-  onDetail?: (id: string) => void
+  data: Contacts
+  onEdit?: (id: Contacts['_id']) => void
+  onDetail?: (id: Contacts['_id']) => void
+  onDelete?: (id: Contacts['_id']) => void
 }
 export const ContactsListItem: React.FC<ContactsListItemProps> = props => {
-  const {id, name, avatar, onEdit, onDetail} = props
+  const {
+    data: {_id, name},
+    onEdit,
+    onDetail,
+    onDelete,
+  } = props
   return (
     <ListItem bottomDivider>
-      <View>
-        <Avatar
-          rounded
-          title={name.slice(0, 2).toUpperCase()}
-          source={{uri: avatar || 'a'}}
-        />
-      </View>
+      {
+        <View>
+          <Avatar
+            rounded
+            title={name.slice(0, 2).toUpperCase()}
+            source={{uri: 'a'}}
+          />
+        </View>
+      }
       <View style={{flex: 1}}>
         <Text>{name}</Text>
       </View>
-      <View style={{display: 'flex', flexDirection: 'row'}}>
-        <View style={{marginRight: 8}}>
-          <Button onPress={() => onDetail?.(id)} title="查结账" />
-        </View>
-        <Button onPress={() => onEdit?.(id)} title="修改" />
-      </View>
+      <Space size={8}>
+        <Button onPress={() => onDetail?.(_id)} title="查结账" />
+        <Button onPress={() => onEdit?.(_id)} title="修改" />
+        <Button
+          buttonStyle={{backgroundColor: 'red'}}
+          onPress={() => onDelete?.(_id)}
+          title="删除"
+        />
+      </Space>
     </ListItem>
   )
 }

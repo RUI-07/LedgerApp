@@ -38,6 +38,16 @@ export class ContactsStore {
         firstDate: item.firstDate,
         _id: item._id,
       })) || []
-    console.log('fetch', this.contacts)
+  }
+
+  remove(targetId: BSON.ObjectId) {
+    if (this.realm) {
+      const target = this.realmContacts?.find(item => item._id.equals(targetId))
+      target &&
+        this.realm.write(() => {
+          this.realm?.delete(target)
+        })
+      this.fetch()
+    }
   }
 }

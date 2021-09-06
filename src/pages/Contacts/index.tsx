@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
-import {View, Text, ScrollView} from 'react-native'
-import {toJS, observable, autorun} from 'mobx'
+import React, {useEffect} from 'react'
+import {View, ScrollView} from 'react-native'
+import {autorun} from 'mobx'
 import {observer, useLocalObservable} from 'mobx-react'
 import {ContactsStore} from './store'
 import {Button} from 'react-native-elements'
@@ -25,8 +25,8 @@ const Contacts = observer(() => {
         {store.contacts.map(item => (
           <ContactsListItem
             key={item._id.toHexString()}
-            id={item._id + ''}
-            name={item.name}
+            data={item}
+            onDelete={id => store.remove(id)}
           />
         ))}
       </ScrollView>
