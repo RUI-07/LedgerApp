@@ -39,3 +39,5 @@ export const navConfig: NavConfig[] = [
     icon: faHistory,
   },
 ]
+
+export const navBarHeight = 50

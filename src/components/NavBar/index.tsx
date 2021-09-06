@@ -2,7 +2,7 @@ import React from 'react'
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native'
 import {globalStoreSingle} from 'src/store/global'
 import {observer} from 'mobx-react'
-import {navConfig} from 'src/share'
+import {navConfig, navBarHeight} from 'src/share'
 
 import {
   FontAwesomeIcon,
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   navBar: {
     flexDirection: 'row',
     width: '100%',
-    height: 50,
+    height: navBarHeight,
   },
   navBarItem: {
     display: 'flex',
